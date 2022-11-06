@@ -1,5 +1,6 @@
 import find,insert
 
-insert.one()
+find.all()
+# insert.one("test data")
 
 pass

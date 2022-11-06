@@ -22,5 +22,6 @@ def all():
 
     response = requests.request("POST", url, headers=headers, data=payload)
     print(response.text)
+    response = json.loads(response.text)
 
     return response

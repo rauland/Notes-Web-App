@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html',reminders=find.all())
+    return render_template('list.html',reminders=find.all())
 
 @app.route("/hello")
 def hello():

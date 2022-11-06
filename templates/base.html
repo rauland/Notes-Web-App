@@ -6,11 +6,10 @@
 <body>
     <h1>Reminders</h1>
     <ul id="reminderlist">
-        {% for item in reminders %}
-            <li><a>{{ item }}</a></li>
+        {% for item in reminders['documents'] %}
+            <li><a>{{ item['task'] }}</a></li>
         {% endfor %}
     </ul>
-
-    {# a comment #}
+    <div id ="content">{% block content %}Missing Element{% endblock %}</div>
 </body>
 </html>

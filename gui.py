@@ -17,4 +17,4 @@ def index():
             delete.one(request.form["ID"])
         
         return redirect(url_for('index'))
-    return render_template('list.html',reminders=find.all())
+    return render_template('app.html',reminders=find.all())

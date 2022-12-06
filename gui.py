@@ -9,7 +9,8 @@ def index():
         print('post method')
         if not request.form.get('NewTask') == None:
             print('insert one')
-            insert.one(request.form['NewTask'])
+            if not request.form['NewTask'] == "":
+                insert.one(request.form['NewTask'])
         
         if not request.form.get('ID') == None:
             print('delete one')

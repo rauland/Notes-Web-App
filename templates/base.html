@@ -10,7 +10,7 @@
             <li>
                 <form method="post">
                 <a>{{ item['task'] }}
-                    <input type="submit" name = "ID" value="{{ item['_id'] }}">🗑️</button>
+                    <input type="hidden" name = "ID" value="{{ item['_id'] }}"></input><button type="submit">🗑️</button>
                 </a>
                 </form>
             </li>

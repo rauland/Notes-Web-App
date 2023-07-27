@@ -2,7 +2,7 @@ import requests
 import json
 import cfg
 
-def one(data):
+def one(data,user = "default"):
     url = "https://data.mongodb-api.com/app/data-yvjfn/endpoint/data/v1/action/insertOne"
 
     payload = json.dumps({
@@ -10,7 +10,8 @@ def one(data):
         "database": "Reminders",
         "dataSource": "Cluster0",
         "document": {
-            "task": data
+            "task": data,
+            "user.id":user
         }
     })
 

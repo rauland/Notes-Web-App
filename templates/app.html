@@ -1,5 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "layout.html" %}
+{% block tasklist %}    
+  {% for item in reminders['documents'] %}
+    <li>
+        <form method="post">
+        <a>
+          <button type="submit">🗑️</button>
+          {{ item['task'] }}  
+          <input type="hidden" name = "ID" value="{{ item['_id'] }}"></input>
+        </a>
+        </form>
+    </li>  
+  {% endfor %}
+{% endblock %}
+{% block addtask %}
   <form method="post">
     <label for="NewTask">Add New Task</label><br>
     <input type="text" id="NewTask" name="NewTask"><br>

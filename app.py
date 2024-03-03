@@ -1,33 +1,26 @@
-from flask import Flask, render_template, request, url_for, flash, redirect
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-import cfg
+from flask import Flask, render_template
+import pandas as pd
 
-# Create a new client and connect to the server
-client = MongoClient(cfg.db_uri, server_api=ServerApi('1'))
+from pymongo_get_database import get_database
+dbname = get_database()
 
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+# Retrieve a collection named "user_1_items" from database
+collection_name = dbname["user_1_items"]
 
 app = Flask(__name__)
 
-@app.route('/', methods=('GET','POST'))
+@app.route("/")
 def index():
-    if request.method == 'POST':
-        print('post method')
-        if not request.form.get('NewTask') == None:
-            print('insert one')
-            if not request.form['NewTask'] == "":
-                insert.one(request.form['NewTask'])
-        
-        if not request.form.get('ID') == None:
-            print('delete one')
-            print(request.form["ID"])
-            delete.one(request.form["ID"])
-        
-        return redirect(url_for('index'))
-    return render_template('app.html',reminders=find.all())
+    item_details = collection_name.find()
+    item_list = []
+    for item in item_details:
+        item_list.append(item['item_name'])
+        print (item['item_name'])
+        # convert the dictionary objects to dataframe
+        # items_df = pd.DataFrame(item_details)
+        # print(items_df)
+    return render_template('app.html',notes=item_list)
+
+@app.route('/about')
+def about():
+    return render_template('about.html')

@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    {% block nav %}{% endblock %}
     <h1>Notes Webapp</h1>
-    <ul id ="tasklist">{% block tasklist %}Missing Element{% endblock %}</ul>
-    <div id ="addtask">{% block addtask %}Missing Element{% endblock %}</div>
+    {% block content %}{% endblock %}
 </body>
 </html>
